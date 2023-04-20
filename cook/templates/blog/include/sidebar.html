@@ -1,0 +1,47 @@
+{% load static %}
+
+<div class="sidebar__item">
+    <div class="sidebar__about__item">
+        <div class="sidebar__item__title">
+            <h6><a class="sidebar__item__title__url" href="{% url 'about' %}">Обо мне</a></h6>
+        </div>
+        <img src="{{ gen_model.gen_image }}" class="sidebar__item__image" alt="">
+        <h6><span>{{ gen_model.title }}</span></h6>
+        <p>{{ gen_model.text|safe|truncatewords:25 }}</p>
+        <a href="{% url 'about' %}" class="primary-btn">Подробнее</a>
+    </div>
+    <div class="sidebar__follow__item">
+        <div class="sidebar__item__title">
+            <h6>Следть за мной</h6>
+        </div>
+        <div class="sidebar__item__follow__links">
+           {% for web in social_web_list %}
+            <a href="{{ web.name }}"><img src="{{ web.icon.url }}" class="contact__img__sidebar"></a>
+           {% endfor %}
+        </div>
+    </div>
+    <div class="sidebar__item__banner">
+        <img src="{% static 'cook/img/sidebar/banner.jpg' %}" alt="">
+    </div>
+    <div class="sidebar__item__categories">
+        <div class="sidebar__item__title">
+            <h6>Категории</h6>
+        </div>
+           {% include 'blog/include/tags/top_menu.html' %}
+    </div>
+    <div class="sidebar__subscribe__item">
+        <div class="sidebar__item__title">
+            <h6>Подписаться</h6>
+        </div>
+        <p>Подпишитесь на рассылку и узнавайте о самых интересных рецептах!</p>
+        <form action="#">
+            <input type="text" class="email-input" placeholder="Ваш email">
+            <label for="s-agree-check">
+                I agree to the terms & conditions
+                <input type="checkbox" id="s-agree-check">
+                <span class="checkmark"></span>
+            </label>
+            <button type="submit" class="site-btn">Подписаться</button>
+        </form>
+    </div>
+</div>

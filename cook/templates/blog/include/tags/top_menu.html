@@ -1,0 +1,22 @@
+{% load mptt_tags %}
+<!--<ul class="root"> #}
+    {% recursetree category_list %}
+        <li>
+            {{ node.name }}
+            {% if not node.is_leaf_node %}
+                <ul class="children">
+                    {{ children }}
+                </ul>
+            {% endif %}
+        </li>
+    {% endrecursetree %}-->
+
+{% recursetree category_list %}
+    <li class="dropdown"><a href="{{ node.get_absolute_url }}">{{ node.name }}</a>
+        {% if not node.is_leaf_node %}
+        <ul class="dropdown__menu">
+            <li><a href="{{ childeren.get_absolute_url  }}">{{ children }}</a></li>
+        </ul>
+        {% endif %}
+    </li>
+{% endrecursetree %}

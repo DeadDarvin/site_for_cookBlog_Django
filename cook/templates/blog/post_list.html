@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if post_list %}
+    <!-- Categories Section Begin -->
+    <section class="categories categories-grid spad">
+        <div class="categories__post">
+            <div class="container">
+                <div class="categories__grid__post">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8">
+                            <div class="breadcrumb__text">
+                                <h2>Categories: <span>{{ post_list.first.category.name }}</span></h2>
+                                <div class="breadcrumb__option">
+                                    <a href="#">Home</a>
+                                    <span>Recipes</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                {# cycle 'categories__post__item__pic small__item set-bg' 'categories__post__item__pic smaller__large set-bg' as img_iter silent #}
+                                {% for post in post_list %}
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="categories__post__item">
+                                        <div class="categories__post__item__pic small__item set-bg"
+                                            data-setbg="{{ post.image.url }}">
+                                            <div class="post__meta">
+                                                <h4>{{ post.create_add|date:'d' }}</h4>
+                                                <span>{{ post.create_add|date:'M' }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="categories__post__item__text">
+                                            <span class="post__label">{{ post.category }}</span>
+                                            <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+                                            <ul class="post__widget">
+                                                <li>by <span>{{ post.author }}</span></li>
+                                                <li>3 min read</li>
+                                                <li>20 Comment</li>
+                                            </ul>
+                                            <p>{{ post.text|slice:':250' }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <div class="col-lg-12 text-center">
+                                    <div class="load__more__btn"><a href="#">Load more</a>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            {% include 'blog/include/sidebar.html'%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Categories Section End -->
+{% else %}
+<div class="breadcrumb__text">
+                                <h1>Пока нет записей</h1>
+
+                            </div>
+<div class="col-lg-12 text-center">
+                                    <div class="load__more__btn">
+                                        <a href="home">На главную</a>
+                                    </div>
+                                </div>
+{% endif %}
+{% endblock %}

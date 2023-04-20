@@ -1,0 +1,28 @@
+{% load menu_tags %}
+<nav class="header__menu">
+    <ul>
+        {% if page_selected == 'home' %}
+        <li class="active"><a href="{% url 'home' %}">Главная</a></li>
+        {% else %}
+        <li><a href="{% url 'home' %}">Главная</a></li>
+        {% endif %}
+        <li><a href="#">Любимые блюда</a>
+            <div class="header__megamenu__wrapper">
+                <div class="header__megamenu">
+                    {% get_post_list %}
+                </div>
+            </div>
+        </li>
+        {% include 'blog/include/tags/top_menu.html' %}
+        {% if page_selected == 'about' %}
+        <li class="active"><a href="{% url 'about' %}">Обо мне</a></li>
+        {% else %}
+        <li><a href="{% url 'about' %}">Обо мне</a></li>
+        {% endif %}
+        {% if page_selected == 'contact' %}
+        <li class="active"><a href="{% url 'contact' %}">Контакты</a></li>
+        {% else %}
+        <li><a href="{% url 'contact' %}">Контакты</a></li>
+        {% endif %}
+    </ul>
+</nav>
