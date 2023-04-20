@@ -36,6 +36,9 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('post_list_use_tag', kwargs={'tag_slug': self.slug})
+
 
 class Post(models.Model):
     """ Статья. На неё вещаются рецепты.  """
@@ -53,6 +56,7 @@ class Post(models.Model):
         on_delete=models.SET_NULL,
         null=True
     )
+    read_time = models.CharField(max_length=35, blank=False, null=True)
     tags = models.ManyToManyField(Tag, related_name='post')
     create_add = models.DateTimeField(auto_now_add=True)
 

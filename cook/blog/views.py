@@ -1,8 +1,10 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from .models import Post
 from .utils import DataMixin
+from .forms import CommentForm
 from contact.models import AboutModel
+from django.urls import reverse_lazy
 
 
 class HomeView(DataMixin, ListView):
@@ -55,3 +57,30 @@ class PostDeatailView(DataMixin, DetailView):
 
 def func(request):
     return render(request, 'index.html')
+
+
+class PostListUseTagView(DataMixin, ListView):
+    """ Представление списка постов по тегу """
+    model = Post
+    template_name = 'blog/post_list_use_tags.html'
+    context_object_name = 'post_list'
+
+    def get_queryset(self):
+        """ Переопределение метода для выбора по слагу категории """
+        queryset = Post.objects.filter(tags__slug=self.kwargs.get('tag_slug')).select_related('category')
+        return queryset
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = super().get_user_context(title=str(self.kwargs.get('slug')) + '...')
+        return dict(list(context.items()) + list(c_def.items()))
+
+
+class CommentFormView(CreateView):
+    form_class = CommentForm
+    #template_name = 'blog/contact.html'
+    #success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return super().form_valid(form)

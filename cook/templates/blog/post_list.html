@@ -10,11 +10,7 @@
                     <div class="row">
                         <div class="col-lg-8 col-md-8">
                             <div class="breadcrumb__text">
-                                <h2>Categories: <span>{{ post_list.first.category.name }}</span></h2>
-                                <div class="breadcrumb__option">
-                                    <a href="#">Home</a>
-                                    <span>Recipes</span>
-                                </div>
+                                <h2>Категория: <span>{{ post_list.first.category.name }}</span></h2>
                             </div>
                             <div class="row">
                                 {# cycle 'categories__post__item__pic small__item set-bg' 'categories__post__item__pic smaller__large set-bg' as img_iter silent #}
@@ -33,8 +29,7 @@
                                             <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
                                             <ul class="post__widget">
                                                 <li>by <span>{{ post.author }}</span></li>
-                                                <li>3 min read</li>
-                                                <li>20 Comment</li>
+                                                <li>{{ post.read_time }}</li>
                                             </ul>
                                             <p>{{ post.text|slice:':250' }}</p>
                                         </div>
@@ -48,7 +43,7 @@
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4">
-                            {% include 'blog/include/sidebar.html'%}
+                            {% include 'include_templates/sidebar.html'%}
                         </div>
                     </div>
                 </div>

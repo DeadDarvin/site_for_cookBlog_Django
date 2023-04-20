@@ -1,0 +1,19 @@
+{% for about_info in last_about_info %}
+<div class="humberger__menu__about">
+    <div class="humberger__menu__title sidebar__item__title">
+        <h6>Обо мне</h6>
+    </div>
+    <img src="img/humberger/humberger-about.jpg" alt="">
+    <h6>{{ about_info.title}}</h6>
+    <p>{{ about_info.text|slice:':200'}}</p>
+    <div class="humberger__menu__about__social sidebar__item__follow__links">
+        {% for web in social_web_list %}
+        <a href="{{ web.name }}"><img src="{{ web.icon.url }}" class="contact__img"></a>
+        {% endfor %}
+        <!--<a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-youtube-play"></i></a>
+        <a href="#"><i class="fa fa-instagram"></i></a>
+        <a href="#"><i class="fa fa-envelope-o"></i></a>-->
+    </div>
+</div>
+{% endfor %}

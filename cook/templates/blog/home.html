@@ -1,11 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-
     <!-- Categories Section Begin -->
     <section class="categories spad">
-
         <div class="categories__post">
             <div class="container">
                 <div class="row">
@@ -23,13 +20,11 @@
                             <div class="categories__post__item__text">
                                 <ul class="post__label--large">
                                     <li>{{ post.category }}</li>
-                                    <li>FIXME</li>
                                 </ul>
                                 <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
                                 <ul class="post__widget">
                                     <li>by <span>{{ post.author }}</span></li>
-                                    <li>{{ FIXME }}</li>
-                                    <li>20 Comment</li>
+                                    <li>{{ post.read_time }}</li>
                                 </ul>
                                 <p>{{ post.text|slice:':250' }}</p>
                                 <a href="{{ post.get_absolute_url }}" class="primary-btn">Читать</a>
@@ -53,8 +48,7 @@
                                 <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
                                 <ul class="post__widget">
                                     <li>by <span>{{ post.author }}</span></li>
-                                    <li>3 min read</li>
-                                    <li>20 Comment</li>
+                                    <li>{{ post.read_time }}</li>
                                 </ul>
                                 <p>{{ post.text|slice:':250' }}</p>
                             </div>
@@ -70,7 +64,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4">
-                        {% include 'blog/include/sidebar.html'%}
+                        {% include 'include_templates/sidebar.html'%}
                     </div>
                 </div>
             </div>

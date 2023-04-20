@@ -13,7 +13,7 @@
                 </div>
             </div>
         </li>
-        {% include 'blog/include/tags/top_menu.html' %}
+        {% include 'include_templates/templates_for_tags/category_menu.html' %}
         {% if page_selected == 'about' %}
         <li class="active"><a href="{% url 'about' %}">Обо мне</a></li>
         {% else %}
