@@ -96,6 +96,7 @@ class Comment(models.Model):
     email = models.EmailField(max_length=100)
     website = models.CharField(max_length=150)
     message = models.TextField(max_length=500)
+    #create_at = models.DateTimeField(auto_now_add=True, default=None)
     post = models.ForeignKey(
         Post,
         related_name='comment',

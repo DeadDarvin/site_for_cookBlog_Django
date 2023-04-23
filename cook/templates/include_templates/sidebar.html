@@ -6,8 +6,8 @@
             <h6><a class="sidebar__item__title__url" href="{% url 'about' %}">Обо мне</a></h6>
         </div>
         <img src="{{ gen_model.gen_image }}" class="sidebar__item__image" alt="">
-        <h6><span>{{ gen_model.title }}</span></h6>
-        <p>{{ gen_model.text|safe|truncatewords:25 }}</p>
+        <h6><span>{{ short_about_info.title }}</span></h6>
+        <p>{{ short_about_info.text|safe|truncatewords:25 }}</p>
         <a href="{% url 'about' %}" class="primary-btn">Подробнее</a>
     </div>
     <div class="sidebar__follow__item">

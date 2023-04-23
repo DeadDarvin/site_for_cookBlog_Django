@@ -1,5 +1,4 @@
 {% load menu_tags %}
-{% load about_tags %}
 <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
@@ -14,7 +13,19 @@
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
-            {% get_short_about_info %}
+        <div class="humberger__menu__about">
+            <div class="humberger__menu__title sidebar__item__title">
+                <h6>Обо мне</h6>
+            </div>
+            <img src="img/humberger/humberger-about.jpg" alt="">
+            <h6>{{ short_about_info.title}}</h6>
+            <p>{{ short_about_info.text|slice:':200'|safe }}</p>
+            <div class="humberger__menu__about__social sidebar__item__follow__links">
+                {% for web in social_web_list %}
+                <a href="{{ web.name }}"><img src="{{ web.icon.url }}" class="contact__img"></a>
+                {% endfor %}
+            </div>
+        </div>
         <div class="humberger__menu__subscribe">
             <div class="humberger__menu__title sidebar__item__title">
                 <h6>Subscribe</h6>

@@ -1,5 +1,5 @@
 from .models import Category
-from contact.models import ContactLink
+from contact.models import ContactLink, AboutModel
 
 
 class DataMixin:
@@ -11,5 +11,8 @@ class DataMixin:
 
         social_webs = ContactLink.objects.all()
         context['social_web_list'] = social_webs
+
+        short_about_info = AboutModel.objects.last()
+        context['short_about_info'] = short_about_info
 
         return context
